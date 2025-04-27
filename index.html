@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Draw Your Soul Map</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #f5f5f5;
+      font-family: 'Georgia', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    button {
+      background-color: #222;
+      color: #ffd700;
+      border: 2px solid #ffd700;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      margin: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    button:hover {
+      background-color: #ffd700;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Draw Your Soul Map ✨</h1>
+  <button onclick="drawSoulThread()">Draw a Soul Thread Card</button>
+  <button onclick="drawSacredKey()">Draw a Sacred Key</button>
+
+  <script>
+    function drawSoulThread() {
+      const soulThreads = [
+        "https://betweensilenceandflame.wordpress.com/2025/04/27/soul-threads-the-wanderer/",
+        "https://betweensilenceandflame.wordpress.com/2025/04/27/soul-threads-the-healer/",
+        "https://betweensilenceandflame.wordpress.com/2025/04/27/soul-threads-the-messenger/"
+      ];
+      const randomIndex = Math.floor(Math.random() * soulThreads.length);
+      window.location.href = soulThreads[randomIndex];
+    }
+
+    function drawSacredKey() {
+      const sacredKeys = [
+        "https://betweensilenceandflame.wordpress.com/2025/04/27/sacred-key-the-offering/",
+        "https://betweensilenceandflame.wordpress.com/2025/04/27/sacred-key-the-mirror/",
+        "https://betweensilenceandflame.wordpress.com/2025/04/27/sacred-key-the-gate/"
+      ];
+      const randomIndex = Math.floor(Math.random() * sacredKeys.length);
+      window.location.href = sacredKeys[randomIndex];
+    }
+  </script>
+
+</body>
+</html>
