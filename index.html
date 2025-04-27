@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,54 +16,95 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
       text-align: center;
     }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
     button {
-      background-color: #222;
-      color: #ffd700;
-      border: 2px solid #ffd700;
+      background: none;
+      border: 2px solid #f5c518;
+      color: #f5c518;
       padding: 1rem 2rem;
-      font-size: 1.5rem;
       margin: 1rem;
+      font-size: 1.5rem;
+      border-radius: 10px;
       cursor: pointer;
-      border-radius: 8px;
-      transition: background-color 0.3s, color 0.3s;
+      transition: background 0.3s, color 0.3s;
     }
     button:hover {
-      background-color: #ffd700;
-      color: #222;
+      background: #f5c518;
+      color: #0d0d0d;
     }
   </style>
 </head>
 <body>
 
   <h1>Draw Your Soul Map ✨</h1>
+
   <button onclick="drawSoulThread()">Draw a Soul Thread Card</button>
   <button onclick="drawSacredKey()">Draw a Sacred Key</button>
 
   <script>
+    const soulThreadCards = [
+      "https://betweensilenceandflame.com/2025/04/23/the-watcher/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%94%a5-the-flame-keeper-ii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%bf-the-earth-walker-iii/",
+      "https://betweensilenceandflame.com/2025/04/27/the-water-weaver-iv/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%a9%b8-the-bound-heart-v/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-silent-one-vi/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8cthe-hidden-child-vii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-shadow-dancer-viii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-wounded-voice-ix/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-pilgrim-x/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-mirror-bearer-xi/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-masked-one-xii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8cthe-silent-mother-xiii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-bone-keeper-xiv/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8cthe-star-born-xv/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-bound-warrior-xvi/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-light-forger-xvii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-forbidden-seer-xviii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-soul-twin-xix/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-gate-walker-xx/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8c-the-blood-healer-xxi/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8cthe-deserted-one-xxii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8cthe-sacred-vessel-xxiii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8cthe-rememberer-xxiv/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8cthe-silent-priestess-xxv/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8cthe-between-one-xxvi/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%91the-shadow-holder-xxvii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%91-the-edge-walker-xxviii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%92-the-veiled-one-xxix/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%9f-the-joy-weaver-xxx/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%95the-sacred-friend-xxxi/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%bfthe-seed-planter-xxxii/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%8c%8cthe-star-walker-xxxiii/"
+    ];
+
+    const sacredKeys = [
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%97%9d%ef%b8%8f-sacred-key-1-the-threshold/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%97%9d%ef%b8%8f-sacred-key-2-the-silence/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%97%9d%ef%b8%8f-sacred-key-3-the-flame/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%97%9d%ef%b8%8f-sacred-key-4-the-choice/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%97%9d%ef%b8%8f-sacred-key-5-the-shadow-key/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%97%9d%ef%b8%8f-sacred-key-6-the-offering/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%97%9d%ef%b8%8f-sacred-key-7-the-mirror/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%97%9d%ef%b8%8f-sacred-key-8-the-gate/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%97%9d%ef%b8%8f-sacred-key-9-the-spiral/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%97%9d%ef%b8%8f-sacred-key-10-the-return/",
+      "https://betweensilenceandflame.com/2025/04/27/%f0%9f%97%9d%ef%b8%8f-sacred-key-11-the-lightkeeper/"
+    ];
+
     function drawSoulThread() {
-      const soulThreads = [
-        "https://betweensilenceandflame.wordpress.com/2025/04/27/soul-threads-the-wanderer/",
-        "https://betweensilenceandflame.wordpress.com/2025/04/27/soul-threads-the-healer/",
-        "https://betweensilenceandflame.wordpress.com/2025/04/27/soul-threads-the-messenger/"
-      ];
-      const randomIndex = Math.floor(Math.random() * soulThreads.length);
-      window.location.href = soulThreads[randomIndex];
+      const randomLink = soulThreadCards[Math.floor(Math.random() * soulThreadCards.length)];
+      window.location.href = randomLink;
     }
 
     function drawSacredKey() {
-      const sacredKeys = [
-        "https://betweensilenceandflame.wordpress.com/2025/04/27/sacred-key-the-offering/",
-        "https://betweensilenceandflame.wordpress.com/2025/04/27/sacred-key-the-mirror/",
-        "https://betweensilenceandflame.wordpress.com/2025/04/27/sacred-key-the-gate/"
-      ];
-      const randomIndex = Math.floor(Math.random() * sacredKeys.length);
-      window.location.href = sacredKeys[randomIndex];
+      const randomLink = sacredKeys[Math.floor(Math.random() * sacredKeys.length)];
+      window.location.href = randomLink;
     }
   </script>
 
